@@ -2,11 +2,7 @@
 
 Rails.application.routes.draw do
   # Devise routes
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations',
-    passwords: 'users/passwords'
-  }
+  devise_for :users
 
   # Custom API Routes
   namespace :api do
@@ -14,7 +10,7 @@ Rails.application.routes.draw do
       # Authentication Routes
       post 'auth/signup', to: 'auth#signup'
       post 'auth/login', to: 'auth#login'
-      post 'auth/logout', to: 'auth#logout'
+      delete 'auth/logout', to: 'auth#logout'
 
       # User Routes
       get 'users/me', to: 'users#show'

@@ -9,4 +9,13 @@ class Api::V1::SessionsController < ApplicationController
       render json: { error: 'Invalid email or password' }, status: :unauthorized
     end
   end
+
+  # Override the destroy action
+  def destroy
+    if current_user
+      head :no_content
+    else
+      render json: { error: 'Not logged in' }, status: :unauthorized
+    end
+  end
 end
